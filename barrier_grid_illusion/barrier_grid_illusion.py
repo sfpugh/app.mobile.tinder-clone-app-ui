@@ -35,17 +35,17 @@ def secure_image():
     # Initialize plot
     px = 1/plt.rcParams['figure.dpi']       # pixel in inches
     fig, ax = plt.subplots(figsize=(N*px, M*px))
+    fig.subplots_adjust(left=0, bottom=0, right=1, top=1, wspace=None, hspace=None)     # remove all margins
     plt.axis('off')
-    plt.rcParams["savefig.bbox"] = 'tight'
-    plt.rcParams["savefig.pad_inches"] = 0
 
     ax.imshow(img)     # set image as background
     
     lw = ((PHOTO_COVER * N) / NUM_BARS) * (72 / fig.dpi)
+    color = 'w'     # TODO: change this to be more of a blur of the original image
 
     lines = []
     for i in range(NUM_BARS):
-        lines.append( ax.plot([], [], lw=lw, color='w', alpha=OPACITY)[0] )
+        lines.append( ax.plot([], [], lw=lw, color=color, alpha=OPACITY)[0] )
 
     # Specify the animation
     def init():
@@ -62,7 +62,6 @@ def secure_image():
         return lines
 
     anim = FuncAnimation(fig, animate, init_func=init, frames=N, interval=10, blit=True)
-    # TODO: try to figure out how to remove the padding from the mp4
     anim.save(TEMP_FILE, fps=60, extra_args=['-vcodec', 'libx264'], savefig_kwargs={'transparent': True})
 
     # Speed it up and save as a GIF
