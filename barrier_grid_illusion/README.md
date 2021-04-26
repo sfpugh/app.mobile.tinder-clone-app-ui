@@ -4,7 +4,7 @@ Barrier Grid Illusion is an animation of lateraly moving lines on top of a stati
 <p align="middle">
   <img src="example/bgi_original.jpg" width="32%" />
   <img src="example/bgi_original_secure.gif" width="32%" /> 
-  <img src="example/bgi_screenshot.jpg" width="32%" />
+  <img src="example/bgi_screenshot.png" width="32%" />
 </p>
 
 ## Usage
